@@ -4,6 +4,7 @@ plugins {
 
 android {
     compileSdk 34
+    namespace 'com.example.upimediatortracker' // ← Add this line
 
     defaultConfig {
         applicationId "com.example.upimediatortracker"
