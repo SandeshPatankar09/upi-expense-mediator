@@ -9,23 +9,33 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
+    # 1. Checkout your code
     - uses: actions/checkout@v4
     
+    # 2. Set up JDK 17 (YOUR ADDITION)
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
-
-    - name: Make gradlew executable
+    
+    # 3. Make gradlew executable (YOUR ADDITION)
+    - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-
+    
+    # 4. Optional: Setup Android SDK
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+    
+    # 5. Build with Gradle (YOUR ADDITION)
     - name: Build with Gradle
       run: ./gradlew assembleDebug
-
+    
+    # 6. Optional: Upload APK as artifact
     - name: Upload APK
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
